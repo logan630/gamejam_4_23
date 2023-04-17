@@ -11,19 +11,26 @@ class Example extends Phaser.Scene
 
     create ()
     {
-        this.cursors = this.input.keyboard.createCursorKeys();
+        this.cursors = this.input.keyboard.addKeys(
+            {'up':Phaser.Input.Keyboard.KeyCodes.W,
+            'down':Phaser.Input.Keyboard.KeyCodes.S,
+            'left':Phaser.Input.Keyboard.KeyCodes.A,
+            'right':Phaser.Input.Keyboard.KeyCodes.D});
         const omap = this.add.image(300, 700, 'oMap');
         omap.setScale(3);
     
         this.player = this.physics.add.sprite(400, 400, 'neutralViolet');
         this.player.setScale(0.05);
+        //this.cameras.main.setBounds(0, 0, 5000, 5000);
+        this.physics.world.setBounds(-640,-2000,2000,2000,true,true,true,false);
+        
         this.player.setCollideWorldBounds(true);
 
         this.cameras.main.setSize(1200, 900);
 
         this.cameras.main.startFollow(this.player);
 
-        //this.cameras.main.setBounds(0, 0, bg.displayWidth, bg.displayHeight);
+        
 
         //this.cameras.main.startFollow(this.player);
 
