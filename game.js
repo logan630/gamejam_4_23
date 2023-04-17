@@ -17,7 +17,7 @@ gameScene.preload = function() {
 
 gameScene.create = function() {
     this.building_layout = this.add.sprite(GAME_WIDTH / 2, GAME_HEIGHT / 2, 'building_layout').setScale(1.75);
-    this.neutralViolet = this.add.sprite((GAME_WIDTH / 2) - 365, GAME_HEIGHT / 2, 'neutralViolet').setScale(0.5);
+    this.neutralViolet = this.add.sprite((GAME_WIDTH / 2) - 400, GAME_HEIGHT / 2, 'neutralViolet').setScale(0.5);
 };
 
 gameScene.update = function() {
