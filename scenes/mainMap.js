@@ -34,6 +34,7 @@ export class mainMap extends Phaser.Scene {
 
         let timer = document.getElementById('timer');
         timer.style.visibility = 'visible';
+        timer.style.display = "block";
 
         this.cursors = this.input.keyboard.addKeys(
             {'up':Phaser.Input.Keyboard.KeyCodes.W,
