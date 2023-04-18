@@ -32,6 +32,9 @@ export class mainMap extends Phaser.Scene {
         let div = document.getElementById('gameContainer');
         div.style.backgroundColor = '#222226';
 
+        let timer = document.getElementById('timer');
+        timer.style.visibility = 'visible';
+
         this.cursors = this.input.keyboard.addKeys(
             {'up':Phaser.Input.Keyboard.KeyCodes.W,
             'down':Phaser.Input.Keyboard.KeyCodes.S,
