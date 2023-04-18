@@ -1,4 +1,4 @@
-class Example extends Phaser.Scene
+class Main extends Phaser.Scene
 {
     player;
     cursors;
@@ -12,11 +12,13 @@ class Example extends Phaser.Scene
         this.load.image('bathroom wall', 'assets/pixel_assets/walls_and_floors/bathroom_wall.png');
         this.load.image('skyline', 'assets/pixel_assets/walls_and_floors/skyline.png');
         this.load.image('meeting room wall', 'assets/pixel_assets/walls_and_floors/meeting_room_wall.png')
-        
     }
 
     create ()
     {
+        let div = document.getElementById('gameContainer');
+        div.style.backgroundColor = '#222226';
+
         this.cursors = this.input.keyboard.addKeys(
             {'up':Phaser.Input.Keyboard.KeyCodes.W,
             'down':Phaser.Input.Keyboard.KeyCodes.S,
@@ -44,7 +46,14 @@ class Example extends Phaser.Scene
         
         this.player.setCollideWorldBounds(true);
 
-        this.cameras.main.setSize(1200, 900);
+        // zooms in the camera to focus on the player
+        this.cameras.main.zoom = 1.6;
+
+        // this.cameras.main.setSize(1200, 900);
+        this.cameras.main.setSize(
+            this.sys.game.canvas.width,
+            this.sys.game.canvas.height
+        )
 
         this.cameras.main.startFollow(this.player);
 
@@ -129,16 +138,23 @@ class Example extends Phaser.Scene
 }
 
 const config = {
+    pixelArt: true,
+    antialias: false,
+    roundPixels: true,
     type: Phaser.AUTO,
     parent: 'phaser-example',
-    backgroundColor: '#0072bc',
     physics: {
         default: 'arcade',
         arcade: {
             debug: false
         }
     },
-    scene: Example
+    canvasStyle: `display: block; width: 100%; height: 100%; align: center; justify-content: center`,
+    scene: Main,
+    width: 1000,
+    height: 750,
+    parent: 'gameContainer',
+    transparent: true
 };
 
 const game = new Phaser.Game(config)
