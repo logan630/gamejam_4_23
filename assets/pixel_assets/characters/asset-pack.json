@@ -1,0 +1,39 @@
+{
+    "section1": {
+        "files": [
+            {
+                "url": "assets/pixel_assets/characters/characterleft.png",
+                "frameConfig": {
+                    "frameWidth": 16,
+                    "frameHeight": 24,
+                    "startFrame": 0,
+                    "endFrame": 3,
+                    "spacing": 1,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "characterleft"
+            },
+            {
+                "url": "assets/pixel_assets/characters/characterright.png",
+                "frameConfig": {
+                    "frameWidth": 16,
+                    "frameHeight": 24,
+                    "startFrame": 0,
+                    "endFrame": 3,
+                    "spacing": 1,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "characterright"
+            }
+        ]
+    },
+    "meta": {
+        "app": "Phaser Editor 2D - Asset Pack Editor",
+        "contentType": "phasereditor2d.pack.core.AssetContentType",
+        "url": "https://phasereditor2d.com",
+        "version": 2,
+        "showAllFilesInBlocks": false
+    }
+}
