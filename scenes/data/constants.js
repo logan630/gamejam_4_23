@@ -1,4 +1,6 @@
 const GAME_WIDTH  = 1000;
 const GAME_HEIGHT = 750;
+const VIOLET_X = 1125;
+const VIOLET_Y = 200;
 
-export { GAME_WIDTH, GAME_HEIGHT }
+export { GAME_WIDTH, GAME_HEIGHT, VIOLET_X, VIOLET_Y }
