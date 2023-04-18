@@ -1,7 +1,9 @@
-const GAME_WIDTH  = 1200;
-const GAME_HEIGHT = 900;
+import { GAME_WIDTH, GAME_HEIGHT } from './data/constants.js';
 
-class titleScreen extends Phaser.Scene {
+let cloudVelocity = 0.75;
+
+export class titleScreen extends Phaser.Scene {
+
     constructor() {
         super({key: "titleScreen"});
     }
@@ -37,5 +39,3 @@ class titleScreen extends Phaser.Scene {
         this.clouds.x += cloudVelocity;
     }
 }
-
-module.exports = {titleScreen: titleScreen};
