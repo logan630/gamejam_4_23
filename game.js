@@ -44,19 +44,24 @@ class titleScreen extends Phaser.Scene {
 
 
 
+
+
 class mainMap extends Phaser.Scene {
     constructor() {
         super({key: "mainMap"});
     }
     
     preload() {
-        this.load.image('outline', 'assets/lmao/background.png');
-        this.load.image('items', 'assets/lmao/foreground.png');
-        this.load.image('character', 'assets/pixel_assets/characters/leftcharacter1.png');
-        this.load.image('dot', 'assets/pixel_assets/dot.png');
+        this.load.baseURL = 'assets/';
+        this.load.image('outline', 'lmao/background.png');
+        this.load.image('items', 'lmao/foreground.png');
+        this.load.image('character', 'pixel_assets/characters/leftcharacter1.png');
+        this.load.image('dot', 'pixel_assets/dot.png');
+        this.load.atlas('charAnimated', 'pixel_assets/characters/character.png', 'pixel_assets/characters/character.json')
+        this.load.spritesheet("ANIMATION", "pixel_assets/characters/character.png", { frameWidth: 15, frameHeight: 24 })
 
         // interaction indicator
-        this.load.image('indicator', 'assets/pixel_assets/items/indicator.png');
+        this.load.image('indicator', 'pixel_assets/items/indicator.png');
     }
 
     create() {
@@ -79,9 +84,32 @@ class mainMap extends Phaser.Scene {
         items.setScale(3);
     
 
-        this.player = this.physics.add.sprite(450, 390, 'character');
+        //character sprite
+        this.player = this.physics.add.sprite(450, 390, 'ANIMATION');
         this.player.setScale(3);
         this.physics.world.setBounds(-640, -2000, 2000, 2000, true, true, true, false);
+       
+       
+        this.anims.create({
+            key: 'left',
+            frameRate: 8,
+            frames: this.anims.generateFrameNumbers('ANIMATION', {start: 0, end: 3}),
+            repeat: -1,
+        })
+
+        this.anims.create({
+            key: 'right',
+            frameRate: 8,
+            frames: this.anims.generateFrameNumbers('ANIMATION', {start: 4, end: 7}),
+            repeat: -1,
+        })
+
+       
+                    
+
+     
+
+
 
         // sprite for the interaction indicator
         this.indicator = this.physics.add.sprite(this.player.x, this.player.y, 'indicator');
@@ -211,12 +239,7 @@ class mainMap extends Phaser.Scene {
         this.physics.add.collider(this.player, platforms);
     }
 
-    static movementSpeeds = {
-        walkX: 200,
-        walkY: 200,
-        runX: 325,
-        runY: 325
-    }
+
 
     // An array of JS objects that define player-environment interactions
     // Fields:
@@ -248,24 +271,36 @@ class mainMap extends Phaser.Scene {
         div.style.backgroundColor = '#222226';
     }
 
-    update() {
 
+    static movementSpeeds = {
+        walkX: 200,
+        walkY: 200,
+        runX: 325,
+        runY: 325
+    }
+
+
+    update() {
         this.player.setVelocity(0);
 
         let xSpeed = mainMap.movementSpeeds.walkX;
         let ySpeed = mainMap.movementSpeeds.walkY
 
         if(this.cursors.left.isDown) {
+            this.player.anims.play("left");
             if(this.cursors.shift.isDown) {
                 xSpeed = mainMap.movementSpeeds.runX;
             }
             this.player.setVelocityX(-xSpeed);
+        
         }
-        else if(this.cursors.right.isDown) {
+        if(this.cursors.right.isDown) {
+            this.player.anims.play("right");
             if(this.cursors.shift.isDown) {
                 xSpeed = mainMap.movementSpeeds.runX;
             }
             this.player.setVelocityX(xSpeed);
+        
         }
         if(this.cursors.up.isDown) {
             if(this.cursors.shift.isDown) {
@@ -273,7 +308,7 @@ class mainMap extends Phaser.Scene {
             }
             this.player.setVelocityY(-ySpeed);
         }
-        else if(this.cursors.down.isDown) {
+        if(this.cursors.down.isDown) {
             if(this.cursors.shift.isDown) {
                 ySpeed = mainMap.movementSpeeds.runY;
             }
