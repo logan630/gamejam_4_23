@@ -13,9 +13,9 @@ export const interactionPoints = [
         action: (stats) => {
             let div = document.getElementById('textbox');
             if(stats.inCutScene) {
-                div.style.display = 'none';
+                div.style.visibility = 'hidden';
             } else {
-                div.style.display = 'block';
+                div.style.visibility = 'visible';
             }
             stats.inCutScene = !stats.inCutScene;
             return stats;
