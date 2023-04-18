@@ -159,6 +159,7 @@ class mainMap extends Phaser.Scene {
         }
     ];
 
+    // for testing; to be removed
     static makeBlack() {
         let div = document.getElementById('gameContainer');
         div.style.backgroundColor = '#222226';
