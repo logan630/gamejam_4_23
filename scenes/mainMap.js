@@ -1,4 +1,4 @@
-import { GAME_WIDTH, GAME_HEIGHT } from "./data/constants.js";
+import { GAME_WIDTH, GAME_HEIGHT, VIOLET_X, VIOLET_Y } from "./data/constants.js";
 import { walls } from "./data/mainPlatforms.js"
 import { interactionPoints } from "./data/interactionPoints.js";
 import { movementSpeeds } from "./data/movementSpeeds.js";
@@ -19,9 +19,14 @@ export class mainMap extends Phaser.Scene {
 
         // interaction indicator
         this.load.image('indicator', 'pixel_assets/items/indicator.png');
+
+        this.load.image('violet_sprite', 'pixel_assets/characters/leftviolet1.png');
     }
 
     create() {
+
+        this.stats = {};
+
         let div = document.getElementById('gameContainer');
         div.style.backgroundColor = '#222226';
 
@@ -40,6 +45,8 @@ export class mainMap extends Phaser.Scene {
         outline.setScale(3);
         items.setScale(3);
     
+        this.violet = this.physics.add.sprite(VIOLET_X, VIOLET_Y, 'violet_sprite');
+        this.violet.setScale(3);
 
         //character sprite
         this.player = this.physics.add.sprite(450, 390, 'ANIMATION');
@@ -65,7 +72,7 @@ export class mainMap extends Phaser.Scene {
         this.indicator = this.physics.add.sprite(this.player.x, this.player.y, 'indicator');
         this.indicator.setScale(2);
         this.indicator.visible = false;
-        
+
         this.player.setCollideWorldBounds(true);
 
         // zooms in the camera to focus on the player
@@ -167,7 +174,7 @@ export class mainMap extends Phaser.Scene {
                     y_new >= p.y - p.r &&
                     y_new <= p.y + p.r
                 ) { // runs the action if they are
-                    p.action();
+                    this.stats = p.action(this.stats);
                 }
             })
         }
