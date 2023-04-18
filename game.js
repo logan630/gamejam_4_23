@@ -54,6 +54,7 @@ class mainMap extends Phaser.Scene {
         this.load.image('items', 'assets/lmao/foreground.png');
         this.load.image('character', 'assets/pixel_assets/characters/leftcharacter1.png');
         this.load.image('dot', 'assets/pixel_assets/dot.png');
+        this.load.image('indicator', 'assets/pixel_assets/items/indicator.png');
     }
 
     create() {
@@ -64,7 +65,8 @@ class mainMap extends Phaser.Scene {
             {'up':Phaser.Input.Keyboard.KeyCodes.W,
             'down':Phaser.Input.Keyboard.KeyCodes.S,
             'left':Phaser.Input.Keyboard.KeyCodes.A,
-            'right':Phaser.Input.Keyboard.KeyCodes.D});
+            'right':Phaser.Input.Keyboard.KeyCodes.D,
+            'space':Phaser.Input.Keyboard.KeyCodes.SPACE});
        
        
             const outline = this.add.image(300, 628, 'outline');
@@ -77,6 +79,10 @@ class mainMap extends Phaser.Scene {
         this.player = this.physics.add.sprite(450, 450, 'character');
         this.player.setScale(3);
         this.physics.world.setBounds(-640, -2000, 2000, 2000, true, true, true, false);
+
+        this.indicator = this.physics.add.sprite(this.player.x, this.player.y, 'indicator');
+        this.indicator.setScale(2);
+        this.indicator.visible = false;
         
         this.player.setCollideWorldBounds(true);
 
@@ -136,7 +142,30 @@ class mainMap extends Phaser.Scene {
         this.physics.add.collider(this.player, platforms);
     }
 
+    static interactionPoints = [
+        {
+            name: 'something', x: 420, y: 420, r: 75,
+            action: () => {
+                let div = document.getElementById('gameContainer');
+                div.style.backgroundColor = '#b00b69';
+            }
+        },
+        {
+            name: 'something else', x: 800, y: 420, r: 75,
+            action: () => {
+                let div = document.getElementById('gameContainer');
+                div.style.backgroundColor = '#420690';
+            }
+        }
+    ];
+
+    static makeBlack() {
+        let div = document.getElementById('gameContainer');
+        div.style.backgroundColor = '#222226';
+    }
+
     update() {
+
         this.player.setVelocity(0);
 
         if(this.cursors.left.isDown)
@@ -148,6 +177,40 @@ class mainMap extends Phaser.Scene {
             this.player.setVelocityY(-200);
         else if(this.cursors.down.isDown)
             this.player.setVelocityY(200);
+
+        for(let p of mainMap.interactionPoints) {
+            let x_new = this.player.x;
+            let y_new = this.player.y;
+            if(
+                x_new >= p.x - p.r &&
+                x_new <= p.x + p.r &&
+                y_new >= p.y - p.r &&
+                y_new <= p.y + p.r
+            ) {
+                this.indicator.x = x_new;
+                this.indicator.y = y_new - 50;
+                this.indicator.visible = true;
+                break;
+            } else {
+                this.indicator.visible = false;
+            }
+        }
+
+        if(this.cursors.space.isDown) {
+            mainMap.makeBlack();
+            mainMap.interactionPoints.forEach((p) => {
+                let x_new = this.player.x;
+                let y_new = this.player.y;
+                if(
+                    x_new >= p.x - p.r &&
+                    x_new <= p.x + p.r &&
+                    y_new >= p.y - p.r &&
+                    y_new <= p.y + p.r
+                ) {
+                    p.action();
+                }
+            })
+        }
     }
 }
 
