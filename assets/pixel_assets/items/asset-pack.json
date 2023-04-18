@@ -1,0 +1,128 @@
+{
+    "section1": {
+        "files": [
+            {
+                "url": "assets/pixel_assets/items/coffee_cup.png",
+                "type": "image",
+                "key": "coffee_cup"
+            },
+            {
+                "url": "assets/pixel_assets/items/coffee_machine.png",
+                "type": "image",
+                "key": "coffee_machine"
+            },
+            {
+                "url": "assets/pixel_assets/items/couch_side.png",
+                "type": "image",
+                "key": "couch_side"
+            },
+            {
+                "url": "assets/pixel_assets/items/desk.png",
+                "type": "image",
+                "key": "desk"
+            },
+            {
+                "url": "assets/pixel_assets/items/fax_machine.png",
+                "type": "image",
+                "key": "fax_machine"
+            },
+            {
+                "url": "assets/pixel_assets/items/filing_cabinet.png",
+                "type": "image",
+                "key": "filing_cabinet"
+            },
+            {
+                "url": "assets/pixel_assets/items/kitchen.png",
+                "type": "image",
+                "key": "kitchen"
+            },
+            {
+                "url": "assets/pixel_assets/items/meeting_table.png",
+                "type": "image",
+                "key": "meeting_table"
+            },
+            {
+                "url": "assets/pixel_assets/items/office_cactus.png",
+                "type": "image",
+                "key": "office_cactus"
+            },
+            {
+                "url": "assets/pixel_assets/items/office_plant.png",
+                "type": "image",
+                "key": "office_plant"
+            },
+            {
+                "url": "assets/pixel_assets/items/paper_stack.png",
+                "type": "image",
+                "key": "paper_stack"
+            },
+            {
+                "url": "assets/pixel_assets/items/printer.png",
+                "type": "image",
+                "key": "printer"
+            },
+            {
+                "url": "assets/pixel_assets/items/recycling_bin.png",
+                "type": "image",
+                "key": "recycling_bin"
+            },
+            {
+                "url": "assets/pixel_assets/items/rug.png",
+                "type": "image",
+                "key": "rug"
+            },
+            {
+                "url": "assets/pixel_assets/items/sink.png",
+                "type": "image",
+                "key": "sink"
+            },
+            {
+                "url": "assets/pixel_assets/items/table_long.png",
+                "type": "image",
+                "key": "table_long"
+            },
+            {
+                "url": "assets/pixel_assets/items/table_wide.png",
+                "type": "image",
+                "key": "table_wide"
+            },
+            {
+                "url": "assets/pixel_assets/items/tissue_box.png",
+                "type": "image",
+                "key": "tissue_box"
+            },
+            {
+                "url": "assets/pixel_assets/items/toilet.png",
+                "type": "image",
+                "key": "toilet"
+            },
+            {
+                "url": "assets/pixel_assets/items/tv.png",
+                "type": "image",
+                "key": "tv"
+            },
+            {
+                "url": "assets/pixel_assets/items/vending_machine.png",
+                "type": "image",
+                "key": "vending_machine"
+            },
+            {
+                "url": "assets/pixel_assets/items/water.png",
+                "type": "image",
+                "key": "water"
+            },
+            {
+                "url": "assets/pixel_assets/items/water_cooler.png",
+                "type": "image",
+                "key": "water_cooler"
+            }
+        ]
+    },
+    "meta": {
+        "app": "Phaser Editor 2D - Asset Pack Editor",
+        "contentType": "phasereditor2d.pack.core.AssetContentType",
+        "url": "https://phasereditor2d.com",
+        "version": 2,
+        "showAllFilesInBlocks": false
+    }
+}
