@@ -1,0 +1,9 @@
+body {
+    display: flex;
+    flex-direction: horizontal;
+    align-items: center;
+    justify-content: center;
+    background-color: #06060f;
+}
+
+/* I hate CSS */
