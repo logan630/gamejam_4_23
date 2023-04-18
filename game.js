@@ -5,13 +5,10 @@ class Main extends Phaser.Scene
 
     preload ()
     {
-        this.load.image('oMap', 'assets/pixel_assets/mapOutline.png');
+        this.load.image('outline', 'assets/lmao/background.png');
+        this.load.image('items', 'assets/lmao/foreground.png');
         this.load.image('character', 'assets/pixel_assets/characters/leftcharacter1.png');
         this.load.image('dot', 'assets/pixel_assets/dot.png');
-        this.load.image('outline', 'assets/pixel_assets/walls_and_floors/outline.png');
-        this.load.image('bathroom wall', 'assets/pixel_assets/walls_and_floors/bathroom_wall.png');
-        this.load.image('skyline', 'assets/pixel_assets/walls_and_floors/skyline.png');
-        this.load.image('meeting room wall', 'assets/pixel_assets/walls_and_floors/meeting_room_wall.png')
     }
 
     create ()
@@ -24,21 +21,16 @@ class Main extends Phaser.Scene
             'down':Phaser.Input.Keyboard.KeyCodes.S,
             'left':Phaser.Input.Keyboard.KeyCodes.A,
             'right':Phaser.Input.Keyboard.KeyCodes.D});
-        const omap = this.add.image(300, 700, 'oMap');
-        const skyline = this.add.image(792, 40, 'skyline');
-
-        const bathroomWallR = this.add.image(168, 76, 'bathroom wall');
-        const bathroomWallL = this.add.image(-48, 76, 'bathroom wall');
-        const meetingRoomWall = this.add.image(768, 724, 'meeting room wall'); 
-        const outline = this.add.image(300, 628, 'outline');
+       
+       
+            const outline = this.add.image(300, 628, 'outline');
+            const items = this.add.image(297, 670, 'items'); 
         
-        omap.setScale(3);
+        
         outline.setScale(3);
-        skyline.setScale(3);
-        meetingRoomWall.setScale(3);
-        bathroomWallR.setScale(3);
-        bathroomWallL.setScale(3);
+        items.setScale(3);
     
+
         this.player = this.physics.add.sprite(450, 450, 'character');
         this.player.setScale(3);
         //this.cameras.main.setBounds(0, 0, 5000, 5000);
