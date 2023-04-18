@@ -44,7 +44,7 @@ class titleScreen extends Phaser.Scene {
 
 
 
-class Main extends Phaser.Scene {
+class mainMap extends Phaser.Scene {
     player;
     cursors;
 
@@ -165,7 +165,7 @@ const config = {
             debug: false
         }
     },
-    scene: [titleScreen, mainMap]
+    scene: [titleScreen, mainMap],
     canvasStyle: `display: block; width: 100%; height: 100%; align: center; justify-content: center`,
     width: GAME_WIDTH,
     height: GAME_HEIGHT,
