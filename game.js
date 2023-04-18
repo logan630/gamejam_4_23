@@ -54,6 +54,8 @@ class mainMap extends Phaser.Scene {
         this.load.image('items', 'assets/lmao/foreground.png');
         this.load.image('character', 'assets/pixel_assets/characters/leftcharacter1.png');
         this.load.image('dot', 'assets/pixel_assets/dot.png');
+
+        // interaction indicator
         this.load.image('indicator', 'assets/pixel_assets/items/indicator.png');
     }
 
@@ -80,6 +82,7 @@ class mainMap extends Phaser.Scene {
         this.player.setScale(3);
         this.physics.world.setBounds(-640, -2000, 2000, 2000, true, true, true, false);
 
+        // sprite for the interaction indicator
         this.indicator = this.physics.add.sprite(this.player.x, this.player.y, 'indicator');
         this.indicator.setScale(2);
         this.indicator.visible = false;
@@ -142,6 +145,13 @@ class mainMap extends Phaser.Scene {
         this.physics.add.collider(this.player, platforms);
     }
 
+    // An array of JS objects that define player-environment interactions
+    // Fields:
+    // name: string - the name of the point; for debugging purposes
+    // x: number (integer) - the x coordinate of the point
+    // y: number (integer) - the y coordinate of the point
+    // r: number (integer) - the distance the player can be from the point to trigger it
+    // action: () -> () - a void function w/ no parameters that modifies stats and the environment
     static interactionPoints = [
         {
             name: 'something', x: 420, y: 420, r: 75,
@@ -179,44 +189,46 @@ class mainMap extends Phaser.Scene {
         else if(this.cursors.down.isDown)
             this.player.setVelocityY(200);
 
+        // Interaction potential indicator
         for(let p of mainMap.interactionPoints) {
             let x_new = this.player.x;
             let y_new = this.player.y;
-            if(
+            if( // checks if the player is within bounds of the point
                 x_new >= p.x - p.r &&
                 x_new <= p.x + p.r &&
                 y_new >= p.y - p.r &&
                 y_new <= p.y + p.r
             ) {
+                // displays ! above their head
                 this.indicator.x = x_new;
                 this.indicator.y = y_new - 50;
                 this.indicator.visible = true;
                 break;
             } else {
+                // out of range; remove the indicator
                 this.indicator.visible = false;
             }
         }
 
         if(this.cursors.space.isDown) {
-            mainMap.makeBlack();
+            mainMap.makeBlack(); // for testing; to be removed
+
+            // Interaction loop
             mainMap.interactionPoints.forEach((p) => {
                 let x_new = this.player.x;
                 let y_new = this.player.y;
-                if(
+                if( // checks if the player is within bounds of the point
                     x_new >= p.x - p.r &&
                     x_new <= p.x + p.r &&
                     y_new >= p.y - p.r &&
                     y_new <= p.y + p.r
-                ) {
+                ) { // runs the action if they are
                     p.action();
                 }
             })
         }
     }
 }
-
-
-
 
 const config = {
     pixelArt: true,
@@ -231,7 +243,6 @@ const config = {
         }
     },
     scene: [titleScreen, mainMap],
-    canvasStyle: `display: block; width: 100%; height: 100%; align: center; justify-content: center`,
     width: GAME_WIDTH,
     height: GAME_HEIGHT,
     parent: 'gameContainer',
