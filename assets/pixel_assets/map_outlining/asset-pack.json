@@ -1,0 +1,23 @@
+{
+    "section1": {
+        "files": [
+            {
+                "url": "assets/pixel_assets/map_outlining/borders.png",
+                "type": "image",
+                "key": "borders"
+            },
+            {
+                "url": "assets/pixel_assets/map_outlining/floor_plan.png",
+                "type": "image",
+                "key": "floor_plan"
+            }
+        ]
+    },
+    "meta": {
+        "app": "Phaser Editor 2D - Asset Pack Editor",
+        "contentType": "phasereditor2d.pack.core.AssetContentType",
+        "url": "https://phasereditor2d.com",
+        "version": 2,
+        "showAllFilesInBlocks": false
+    }
+}
