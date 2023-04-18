@@ -45,9 +45,10 @@ class titleScreen extends Phaser.Scene {
 
 
 class mainMap extends Phaser.Scene {
-    player;
-    cursors;
-
+    constructor() {
+        super({key: "mainMap"});
+    }
+    
     preload() {
         this.load.image('outline', 'assets/lmao/background.png');
         this.load.image('items', 'assets/lmao/foreground.png');
