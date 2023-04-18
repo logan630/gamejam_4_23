@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/logan630/gamejam_4_23#readme",
   "dependencies": {
+    "browser-sync": "^2.29.1",
     "phaser": "^3.60.0"
   },
   "description": ""

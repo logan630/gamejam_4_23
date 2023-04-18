@@ -92,7 +92,7 @@ class mainMap extends Phaser.Scene {
        
         this.anims.create({
             key: 'left',
-            frameRate: 8,
+            frameRate: 4,
             frames: this.anims.generateFrameNumbers('ANIMATION', {start: 0, end: 3}),
             repeat: -1,
         })
@@ -103,13 +103,6 @@ class mainMap extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('ANIMATION', {start: 4, end: 7}),
             repeat: -1,
         })
-
-       
-                    
-
-     
-
-
 
         // sprite for the interaction indicator
         this.indicator = this.physics.add.sprite(this.player.x, this.player.y, 'indicator');
@@ -287,15 +280,15 @@ class mainMap extends Phaser.Scene {
         let ySpeed = mainMap.movementSpeeds.walkY
 
         if(this.cursors.left.isDown) {
-            this.player.anims.play("left");
+            this.player.anims.play("left", true);
             if(this.cursors.shift.isDown) {
                 xSpeed = mainMap.movementSpeeds.runX;
             }
             this.player.setVelocityX(-xSpeed);
-        
+
         }
         if(this.cursors.right.isDown) {
-            this.player.anims.play("right");
+            this.player.anims.play("right", true);
             if(this.cursors.shift.isDown) {
                 xSpeed = mainMap.movementSpeeds.runX;
             }
@@ -314,6 +307,10 @@ class mainMap extends Phaser.Scene {
             }
             this.player.setVelocityY(ySpeed);
         }
+        if(this.cursors.left.isUp || this.cursors.right.isUp) {
+            this.player.anims.pause();
+        }
+
 
         // Interaction potential indicator
         for(let p of mainMap.interactionPoints) {
