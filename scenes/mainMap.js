@@ -59,15 +59,15 @@ export class mainMap extends Phaser.Scene {
         this.anims.create({
             key: 'left',
             frameRate: 4,
-            frames: this.anims.generateFrameNumbers('ANIMATION', {start: 0, end: 3}),
-            repeat: -1,
+            frames: this.anims.generateFrameNumbers('ANIMATION', {frames: [1,2,3,0]}),
+            repeat: 0,
         })
 
         this.anims.create({
             key: 'right',
             frameRate: 8,
             frames: this.anims.generateFrameNumbers('ANIMATION', {start: 4, end: 7}),
-            repeat: -1,
+            repeat: 0,
         })
 
         // sprite for the interaction indicator
