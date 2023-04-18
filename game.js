@@ -86,12 +86,6 @@ class mainMap extends Phaser.Scene {
         this.cameras.main.setSize(1200, 900);
 
         this.cameras.main.startFollow(this.player);
-
-        //this.cameras.main.setBounds(0, 0, bg.displayWidth, bg.displayHeight);
-
-        //this.cameras.main.startFollow(this.player);
-
-        //this.player.setCollideWorldBounds(true);
     }
 
     update() {
