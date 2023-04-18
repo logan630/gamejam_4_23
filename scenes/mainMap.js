@@ -61,15 +61,29 @@ export class mainMap extends Phaser.Scene {
        
        
         this.anims.create({
-            key: 'left',
-            frameRate: 4,
+            key: 'left-walk',
+            frameRate: 5,
             frames: this.anims.generateFrameNumbers('ANIMATION', {frames: [1,2,3,0]}),
             repeat: 0,
         })
 
         this.anims.create({
-            key: 'right',
-            frameRate: 8,
+            key: 'right-walk',
+            frameRate: 5,
+            frames: this.anims.generateFrameNumbers('ANIMATION', {frames: [4, 5, 6, 7]}),
+            repeat: 0,
+        })
+
+        this.anims.create({
+            key: 'left-run',
+            frameRate: 10,
+            frames: this.anims.generateFrameNumbers('ANIMATION', {frames: [1,2,3,0]}),
+            repeat: 0,
+        })
+
+        this.anims.create({
+            key: 'right-run',
+            frameRate: 10,
             frames: this.anims.generateFrameNumbers('ANIMATION', {start: 4, end: 7}),
             repeat: 0,
         })
@@ -124,19 +138,22 @@ export class mainMap extends Phaser.Scene {
         let ySpeed = movementSpeeds.walkY;
 
         if(this.cursors.left.isDown) {
-            this.player.anims.play("left", true);
+            let walkLeft = "left-walk";
             if(this.cursors.shift.isDown) {
+                walkLeft = "left-run";
                 xSpeed = movementSpeeds.runX;
             }
             this.player.setVelocityX(-xSpeed);
-
+            this.player.anims.play(walkLeft, true);
         }
         if(this.cursors.right.isDown) {
-            this.player.anims.play("right", true);
+            let walkRight = "right-walk";
             if(this.cursors.shift.isDown) {
+                walkRight = "right-run";
                 xSpeed = movementSpeeds.runX;
             }
             this.player.setVelocityX(xSpeed);
+            this.player.anims.play(walkRight, true);
         
         }
         if(this.cursors.up.isDown) {
