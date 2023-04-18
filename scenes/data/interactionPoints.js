@@ -12,7 +12,12 @@ export const interactionPoints = [
         name: 'violet', x: VIOLET_X, y: VIOLET_Y, r: 50,
         action: (stats) => {
             let div = document.getElementById('gameContainer');
-            div.style.backgroundColor = '#aa44aa';
+            if(stats.inCutScene) {
+                div.style.backgroundColor = '#222226';
+            } else {
+                div.style.backgroundColor = '#aa44aa';
+            }
+            stats.inCutScene = !stats.inCutScene;
             return stats;
         }
     }

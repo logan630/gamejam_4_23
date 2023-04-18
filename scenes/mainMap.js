@@ -1,4 +1,4 @@
-import { GAME_WIDTH, GAME_HEIGHT, VIOLET_X, VIOLET_Y } from "./data/constants.js";
+import { VIOLET_X, VIOLET_Y } from "./data/constants.js";
 import { walls } from "./data/mainPlatforms.js"
 import { interactionPoints } from "./data/interactionPoints.js";
 import { movementSpeeds } from "./data/movementSpeeds.js";
@@ -25,7 +25,9 @@ export class mainMap extends Phaser.Scene {
 
     create() {
 
-        this.stats = {};
+        this.stats = {
+            inCutScene: false,
+        };
 
         let div = document.getElementById('gameContainer');
         div.style.backgroundColor = '#222226';
@@ -93,12 +95,22 @@ export class mainMap extends Phaser.Scene {
         });
 
         this.physics.add.collider(this.player, platforms);
-    }
 
-    // for testing; to be removed
-    static makeBlack() {
-        let div = document.getElementById('gameContainer');
-        div.style.backgroundColor = '#222226';
+        this.input.keyboard.on('keydown_SPACE', () => {
+            // Interaction loop
+            interactionPoints.forEach((p) => {
+                let x_new = this.player.x;
+                let y_new = this.player.y;
+                if( // checks if the player is within bounds of the point
+                    x_new >= p.x - p.r &&
+                    x_new <= p.x + p.r &&
+                    y_new >= p.y - p.r &&
+                    y_new <= p.y + p.r
+                ) { // runs the action if they are
+                    this.stats = p.action(this.stats);
+                }
+            })
+        }, this);
     }
 
     update() {
@@ -159,24 +171,6 @@ export class mainMap extends Phaser.Scene {
                 // out of range; remove the indicator
                 this.indicator.visible = false;
             }
-        }
-
-        if(this.cursors.space.isDown) {
-            mainMap.makeBlack(); // for testing; to be removed
-
-            // Interaction loop
-            interactionPoints.forEach((p) => {
-                let x_new = this.player.x;
-                let y_new = this.player.y;
-                if( // checks if the player is within bounds of the point
-                    x_new >= p.x - p.r &&
-                    x_new <= p.x + p.r &&
-                    y_new >= p.y - p.r &&
-                    y_new <= p.y + p.r
-                ) { // runs the action if they are
-                    this.stats = p.action(this.stats);
-                }
-            })
         }
     }
 }
