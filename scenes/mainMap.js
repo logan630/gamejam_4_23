@@ -182,6 +182,7 @@ export class mainMap extends Phaser.Scene {
             )
         ) {
             document.getElementById('textbox').style.visibility = 'hidden';
+            this.stats.inCutScene = false;
         }
     }
 }
