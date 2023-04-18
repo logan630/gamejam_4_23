@@ -1,4 +1,4 @@
-import { VIOLET_X, VIOLET_Y } from "./data/constants.js";
+import { VIOLET_X, VIOLET_Y, VIOLET_R } from "./data/constants.js";
 import { walls } from "./data/mainPlatforms.js"
 import { interactionPoints } from "./data/interactionPoints.js";
 import { movementSpeeds } from "./data/movementSpeeds.js";
@@ -171,6 +171,17 @@ export class mainMap extends Phaser.Scene {
                 // out of range; remove the indicator
                 this.indicator.visible = false;
             }
+        }
+
+        if( // checks if the player is too far away from Violet for her dialogue textbox to show
+            !(
+                this.player.x >= VIOLET_X - VIOLET_R &&
+                this.player.x <= VIOLET_X + VIOLET_R &&
+                this.player.y >= VIOLET_Y - VIOLET_R &&
+                this.player.y <= VIOLET_Y + VIOLET_R
+            )
+        ) {
+            document.getElementById('textbox').style.visibility = 'hidden';
         }
     }
 }

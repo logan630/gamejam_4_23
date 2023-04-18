@@ -1,4 +1,4 @@
-import { VIOLET_X, VIOLET_Y } from "./constants.js";
+import { VIOLET_X, VIOLET_Y, VIOLET_R } from "./constants.js";
 
 // An array of JS objects that define player-environment interactions
 // Fields:
@@ -9,7 +9,7 @@ import { VIOLET_X, VIOLET_Y } from "./constants.js";
 // action: () -> () - a void function w/ no parameters that modifies stats and the environment
 export const interactionPoints = [
     {
-        name: 'violet', x: VIOLET_X, y: VIOLET_Y, r: 50,
+        name: 'violet', x: VIOLET_X, y: VIOLET_Y, r: VIOLET_R,
         action: (stats) => {
             let div = document.getElementById('textbox');
             if(stats.inCutScene) {
