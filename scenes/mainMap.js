@@ -6,6 +6,10 @@ import { movementSpeeds } from "./data/movementSpeeds.js";
 export class mainMap extends Phaser.Scene {
     constructor() {
         super({key: "mainMap"});
+
+        this.stats = {
+            inCutScene: false,
+        };
     }
     
     preload() {
@@ -24,10 +28,6 @@ export class mainMap extends Phaser.Scene {
     }
 
     create() {
-
-        this.stats = {
-            inCutScene: false,
-        };
 
         let div = document.getElementById('gameContainer');
         div.style.backgroundColor = '#222226';

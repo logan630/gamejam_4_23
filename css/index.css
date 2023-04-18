@@ -6,4 +6,17 @@ body {
     background-color: #06060f;
 }
 
+#textbox {
+    display: block;
+    width: 975px;
+    height: 200px;
+    padding: 5px 20px 20px 10px;
+    position: fixed;
+    top:calc(62%);
+    left:calc(50%-500px);
+    border-width: thick;
+    border-color: black;
+    background: white;
+}
+
 /* I hate CSS */
