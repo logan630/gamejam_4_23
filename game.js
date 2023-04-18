@@ -1,18 +1,61 @@
-class Main extends Phaser.Scene
-{
+const GAME_WIDTH  = 1000;
+const GAME_HEIGHT = 750;
+let cloudVelocity = 0.75;
+
+
+
+class titleScreen extends Phaser.Scene {
+    constructor() {
+        super({key: "titleScreen"});
+    }
+
+    preload() {
+        this.load.image('stonks_titleScreen', 'assets/stonks_titleScreen.png');
+        this.load.image('skyscrapers'       , 'assets/skyscrapers.png');
+        this.load.image('clouds'            , 'assets/clouds.png');
+        this.load.image('skyColor'          , 'assets/skyColor.jpg');
+    }
+    
+    create() {
+        this.skyColor = this.add.image(GAME_WIDTH / 2, GAME_HEIGHT / 2, 'skyColor');
+    
+        this.clouds = this.add.image(GAME_WIDTH / 2, (GAME_HEIGHT / 2) - 100, 'clouds').setScale(GAME_WIDTH / 256);
+    
+        this.skyscrapers = this.add.image(GAME_WIDTH / 2, GAME_HEIGHT / 2, 'skyscrapers').setScale(GAME_WIDTH / 256, GAME_HEIGHT / 192);
+    
+        this.stonks = this.physics.add.image(GAME_WIDTH / 2, GAME_HEIGHT / 2, 'stonks_titleScreen').setScale(1.5);
+        this.stonks.setVelocity(100, 200);
+        this.stonks.setBounce(1, 1);
+        this.stonks.setCollideWorldBounds(true);
+        this.stonks.setInteractive();
+
+        this.stonks.once("pointerup", function(pointer) {
+            this.scene.start("mainMap");
+        }, this);
+    }
+    
+    update() {
+        if((this.clouds.x >= GAME_WIDTH - 400) || (this.clouds.x <= 400))
+            cloudVelocity *= -1;
+        this.clouds.x += cloudVelocity;
+    }
+}
+
+
+
+
+class Main extends Phaser.Scene {
     player;
     cursors;
 
-    preload ()
-    {
+    preload() {
         this.load.image('outline', 'assets/lmao/background.png');
         this.load.image('items', 'assets/lmao/foreground.png');
         this.load.image('character', 'assets/pixel_assets/characters/leftcharacter1.png');
         this.load.image('dot', 'assets/pixel_assets/dot.png');
     }
 
-    create ()
-    {
+    create() {
         let div = document.getElementById('gameContainer');
         div.style.backgroundColor = '#222226';
 
@@ -24,8 +67,7 @@ class Main extends Phaser.Scene
        
        
             const outline = this.add.image(300, 628, 'outline');
-            const items = this.add.image(297, 670, 'items'); 
-        
+            const items = this.add.image(297, 670, 'items');
         
         outline.setScale(3);
         items.setScale(3);
@@ -33,8 +75,7 @@ class Main extends Phaser.Scene
 
         this.player = this.physics.add.sprite(450, 450, 'character');
         this.player.setScale(3);
-        //this.cameras.main.setBounds(0, 0, 5000, 5000);
-        this.physics.world.setBounds(-640,-2000,2000,2000,true,true,true,false);
+        this.physics.world.setBounds(-640, -2000, 2000, 2000, true, true, true, false);
         
         this.player.setCollideWorldBounds(true);
 
@@ -48,7 +89,7 @@ class Main extends Phaser.Scene
         )
 
         this.cameras.main.startFollow(this.player);
-
+        
         const platforms = this.physics.add.staticGroup();
 
         [   // Solid objects (platforms)
@@ -92,32 +133,25 @@ class Main extends Phaser.Scene
         });
 
         this.physics.add.collider(this.player, platforms);
-
     }
 
-    update ()
-    {
+    update() {
         this.player.setVelocity(0);
 
-        if (this.cursors.left.isDown)
-        {
+        if(this.cursors.left.isDown)
             this.player.setVelocityX(-200);
-        }
-        else if (this.cursors.right.isDown)
-        {
+        else if(this.cursors.right.isDown)
             this.player.setVelocityX(200);
-        }
 
-        if (this.cursors.up.isDown)
-        {
+        if(this.cursors.up.isDown)
             this.player.setVelocityY(-200);
-        }
-        else if (this.cursors.down.isDown)
-        {
+        else if(this.cursors.down.isDown)
             this.player.setVelocityY(200);
-        }
     }
 }
+
+
+
 
 const config = {
     pixelArt: true,
@@ -131,12 +165,12 @@ const config = {
             debug: false
         }
     },
+    scene: [titleScreen, mainMap]
     canvasStyle: `display: block; width: 100%; height: 100%; align: center; justify-content: center`,
-    scene: Main,
-    width: 1000,
-    height: 750,
+    width: GAME_WIDTH,
+    height: GAME_HEIGHT,
     parent: 'gameContainer',
     transparent: true
 };
 
-const game = new Phaser.Game(config)
+const game = new Phaser.Game(config);
