@@ -28,9 +28,7 @@ export class titleScreen extends Phaser.Scene {
         this.stonks.setCollideWorldBounds(true);
         this.stonks.setInteractive();
 
-        this.stonks.once("pointerup", function(pointer) {
-            this.scene.start("mainMap");
-        }, this);
+        this.stonks.once("pointerup", () => this.scene.start("mainMap"), this);
     }
     
     update() {

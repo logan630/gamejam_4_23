@@ -117,7 +117,7 @@ export class mainMap extends Phaser.Scene {
         this.player.setVelocity(0);
 
         let xSpeed = movementSpeeds.walkX;
-        let ySpeed = movementSpeeds.walkY
+        let ySpeed = movementSpeeds.walkY;
 
         if(this.cursors.left.isDown) {
             this.player.anims.play("left", true);
