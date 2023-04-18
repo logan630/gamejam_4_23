@@ -150,7 +150,7 @@ class mainMap extends Phaser.Scene {
             
             //main room
             }, { // bottom of main room
-                x: 412, y: 512, xSize: 576, ySize: 20
+                x: 412, y: 512, xSize: 573, ySize: 20
             }, { // right of main room
                 x: 1183, y: 108, xSize: 20, ySize: 406
             }, { // water cooler
