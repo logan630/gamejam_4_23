@@ -80,7 +80,7 @@ class Starty extends Phaser.Scene
             next1.destroy();
             next2 = this.add.text(800, 600, 'Next', {fontSize: 30, color: '#000000'}).setInteractive();
             */
-            next1.input.enabled = false;
+            next1.input.enabled = false; 
             d1.setText("");  
             
             c1 = this.add.text(80, 560, '[My mom says I look good…]', 
