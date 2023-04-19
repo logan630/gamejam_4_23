@@ -23,9 +23,7 @@ export class mainMap extends Phaser.Scene {
         this.load.baseURL = 'assets/';
         this.load.image('outline', 'lmao/background.png');
         this.load.image('items', 'lmao/foreground.png');
-        this.load.image('character', 'pixel_assets/characters/leftcharacter1.png');
         this.load.image('dot', 'pixel_assets/dot.png');
-        this.load.atlas('charAnimated', 'pixel_assets/characters/character.png', 'pixel_assets/characters/character.json')
         this.load.spritesheet("ANIMATION", "pixel_assets/characters/character.png", { frameWidth: 15, frameHeight: 24 })
 
         // interaction indicator
@@ -74,7 +72,7 @@ export class mainMap extends Phaser.Scene {
         this.anims.create({
             key: 'right-walk',
             frameRate: 5,
-            frames: this.anims.generateFrameNumbers('ANIMATION', {frames: [4, 5, 6, 7]}),
+            frames: this.anims.generateFrameNumbers('ANIMATION', {frames: [5, 6, 7, 4]}),
             repeat: 0,
         })
 
@@ -88,7 +86,7 @@ export class mainMap extends Phaser.Scene {
         this.anims.create({
             key: 'right-run',
             frameRate: 10,
-            frames: this.anims.generateFrameNumbers('ANIMATION', {start: 4, end: 7}),
+            frames: this.anims.generateFrameNumbers('ANIMATION', {frames: [5, 6, 7, 4]}),
             repeat: 0,
         })
 
