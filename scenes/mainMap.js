@@ -30,6 +30,8 @@ export class mainMap extends Phaser.Scene {
         this.load.image('indicator', 'pixel_assets/items/indicator.png');
 
         this.load.image('violet_sprite', 'pixel_assets/characters/leftviolet1.png');
+
+        
     }
 
     create() {
