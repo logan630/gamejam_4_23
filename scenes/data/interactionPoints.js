@@ -25,7 +25,13 @@ export const interactionPoints = [
     {
         name: 'waterCooler', x: 442, y: 247, r: 64,
         action: (stats) => {
-            stats.TIME -= 5;
+            if(stats.time > 0) {
+                stats.time -= 5;
+                stats.stock += 1;
+                if(stats.time === 0) stats.dayOver = true;
+            } else {
+                stats.dayOver = true;
+            }
             return stats;
         }
     }

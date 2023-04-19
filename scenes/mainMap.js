@@ -3,7 +3,9 @@ import { walls } from "./data/mainPlatforms.js"
 import { interactionPoints } from "./data/interactionPoints.js";
 import { movementSpeeds } from "./data/movementSpeeds.js";
 
+let info = document.getElementById('info-container');
 let timer = document.getElementById('timer');
+let stock = document.getElementById('stock');
 
 export class mainMap extends Phaser.Scene {
     constructor() {
@@ -11,6 +13,9 @@ export class mainMap extends Phaser.Scene {
 
         this.stats = {
             inCutScene: false,
+            time: 55,
+            stock: 0,
+            dayOver: false
         };
     }
     
@@ -30,12 +35,10 @@ export class mainMap extends Phaser.Scene {
     }
 
     create() {
-        this.stats.TIME = 60;
         let div = document.getElementById('gameContainer');
         div.style.backgroundColor = '#222226';
 
-        timer.style.visibility = 'visible';
-        timer.style.display = "block";
+        info.style.display = 'block';
 
         this.cursors = this.input.keyboard.addKeys(
             {'up':Phaser.Input.Keyboard.KeyCodes.W,
@@ -135,7 +138,8 @@ export class mainMap extends Phaser.Scene {
     update() {
         this.player.setVelocity(0);
 
-        timer.innerHTML = "Time: " + this.stats.TIME;
+        timer.innerText = !this.stats.dayOver ? `Time: 0:${this.stats.time}` : "Day is over!";
+        stock.innerText = `Stock Price \$${this.stats.stock}`;
 
         let xSpeed = movementSpeeds.walkX;
         let ySpeed = movementSpeeds.walkY;
