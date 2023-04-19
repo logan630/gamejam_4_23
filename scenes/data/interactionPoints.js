@@ -34,5 +34,19 @@ export const interactionPoints = [
             }
             return stats;
         }
+    },
+    {
+        name: 'toilet', x: -143, y: 120, r: 50,
+        action: (stats) => {
+            stats.stock += 100;
+            return stats;
+        }
+    },
+    {
+        name: 'vendingMachine', x: -228, y: 289, r: 50,
+        action: (stats) => {
+            stats.stock += Math.round(Math.random() * (10) - 5);
+            return stats;
+        }
     }
 ];
