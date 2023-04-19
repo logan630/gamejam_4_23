@@ -55,6 +55,8 @@ export const walls =
             x: 400, y: 60, xSize: 50, ySize: 51
     }, { // filing cabinets
             x: 1020, y: 60, xSize: 160, ySize: 51
+    }, { // mother
+            x: 1110, y: 160, xSize: 160, ySize: 48  
     }, { // bottom of main room and right of right hallway
         x: 1087, y: 512, xSize: 100, ySize: 576
     }, { // main room desk
