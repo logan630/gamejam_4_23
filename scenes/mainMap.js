@@ -3,6 +3,8 @@ import { walls } from "./data/mainPlatforms.js"
 import { interactionPoints } from "./data/interactionPoints.js";
 import { movementSpeeds } from "./data/movementSpeeds.js";
 
+let timer = document.getElementById('timer');
+
 export class mainMap extends Phaser.Scene {
     constructor() {
         super({key: "mainMap"});
@@ -26,12 +28,12 @@ export class mainMap extends Phaser.Scene {
     }
 
     create() {
-
+        this.stats.TIME = 60;
         let div = document.getElementById('gameContainer');
         div.style.backgroundColor = '#222226';
 
-        let timer = document.getElementById('timer');
         timer.style.visibility = 'visible';
+        timer.style.display = "block";
 
         this.cursors = this.input.keyboard.addKeys(
             {'up':Phaser.Input.Keyboard.KeyCodes.W,
@@ -130,6 +132,8 @@ export class mainMap extends Phaser.Scene {
 
     update() {
         this.player.setVelocity(0);
+
+        timer.innerHTML = "Time: " + this.stats.TIME;
 
         let xSpeed = movementSpeeds.walkX;
         let ySpeed = movementSpeeds.walkY;

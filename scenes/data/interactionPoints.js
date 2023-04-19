@@ -20,5 +20,13 @@ export const interactionPoints = [
             stats.inCutScene = !stats.inCutScene;
             return stats;
         }
+    },
+
+    {
+        name: 'waterCooler', x: 442, y: 247, r: 64,
+        action: (stats) => {
+            stats.TIME -= 5;
+            return stats;
+        }
     }
 ];
