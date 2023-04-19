@@ -29,6 +29,10 @@ export class titleScreen extends Phaser.Scene {
         this.stonks.setInteractive();
 
         this.stonks.once("pointerup", () => this.scene.start("mainMap"), this);
+        this.add.text(120,670, 'Click "stonks" to start!', {
+            fontFamily: '"Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif',
+            fontSize: '80px'
+        })
     }
     
     update() {
