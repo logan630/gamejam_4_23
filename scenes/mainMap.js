@@ -4,7 +4,6 @@ import { interactionPoints } from "./data/interactionPoints.js";
 import { movementSpeeds } from "./data/movementSpeeds.js";
 
 let timer = document.getElementById('timer');
-let TIME = 60;
 
 export class mainMap extends Phaser.Scene {
     constructor() {
@@ -31,6 +30,7 @@ export class mainMap extends Phaser.Scene {
     }
 
     create() {
+        this.stats.TIME = 60;
         let div = document.getElementById('gameContainer');
         div.style.backgroundColor = '#222226';
 
@@ -127,9 +127,6 @@ export class mainMap extends Phaser.Scene {
                     y_new <= p.y + p.r
                 ) { // runs the action if they are
                     this.stats = p.action(this.stats);
-                    if(p.timeChange) {
-                        TIME += p.timeChange;
-                    }
                 }
             })
         }, this);
@@ -138,7 +135,7 @@ export class mainMap extends Phaser.Scene {
     update() {
         this.player.setVelocity(0);
 
-        timer.innerHTML = "Time: " + TIME;
+        timer.innerHTML = "Time: " + this.stats.TIME;
 
         let xSpeed = movementSpeeds.walkX;
         let ySpeed = movementSpeeds.walkY;
