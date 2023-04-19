@@ -31,7 +31,7 @@ export class mainMap extends Phaser.Scene {
 
         this.load.image('violet_sprite', 'pixel_assets/characters/leftviolet1.png');
 
-        
+        this.load.audio("song", "../assets/song.wav");
     }
 
     create() {
@@ -54,6 +54,9 @@ export class mainMap extends Phaser.Scene {
         
         outline.setScale(3);
         items.setScale(3);
+
+        this.song = this.sound.add("song");
+        this.song.play();
     
         this.violet = this.physics.add.sprite(VIOLET_X, VIOLET_Y, 'violet_sprite');
         this.violet.setScale(3);
@@ -139,7 +142,7 @@ export class mainMap extends Phaser.Scene {
         this.player.setVelocity(0);
 
         timer.innerText = !this.stats.dayOver ? `Time: 0:${this.stats.time}` : "Day is over!";
-        stock.innerText = `Stock Price: \$${this.stats.stock}`;
+        stock.innerText = `Stock Price: ${this.stats.stock}`;
 
         let xSpeed = movementSpeeds.walkX;
         let ySpeed = movementSpeeds.walkY;
