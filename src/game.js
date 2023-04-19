@@ -3,7 +3,7 @@ let gameScene = new Phaser.scene("STONKS!");
 const GAME_WIDTH  = 100;
 const GAME_HEIGHT = 100;
 
-const config = {
+let config = {
     type: Phaser.AUTO,
     parent: 'phaser',
     width: GAME_WIDTH,
@@ -13,6 +13,11 @@ const config = {
     roundPixels: true,
     scene: gameScene
 };
+
+config.pixelArt = false;
+config.antialias= true;
+
+
 
 gameScene.preload = function preload() {
     this.load.image("windowsXPbackground_bliss", "assets/backgrounds/windowsXPbackground_bliss.jpg");
