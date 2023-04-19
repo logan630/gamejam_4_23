@@ -3,6 +3,9 @@ import { walls } from "./data/mainPlatforms.js"
 import { interactionPoints } from "./data/interactionPoints.js";
 import { movementSpeeds } from "./data/movementSpeeds.js";
 
+let timer = document.getElementById('timer');
+let TIME = 60;
+
 export class mainMap extends Phaser.Scene {
     constructor() {
         super({key: "mainMap"});
@@ -28,11 +31,9 @@ export class mainMap extends Phaser.Scene {
     }
 
     create() {
-
         let div = document.getElementById('gameContainer');
         div.style.backgroundColor = '#222226';
 
-        let timer = document.getElementById('timer');
         timer.style.visibility = 'visible';
         timer.style.display = "block";
 
@@ -126,6 +127,9 @@ export class mainMap extends Phaser.Scene {
                     y_new <= p.y + p.r
                 ) { // runs the action if they are
                     this.stats = p.action(this.stats);
+                    if(p.timeChange) {
+                        TIME += p.timeChange;
+                    }
                 }
             })
         }, this);
@@ -133,6 +137,8 @@ export class mainMap extends Phaser.Scene {
 
     update() {
         this.player.setVelocity(0);
+
+        timer.innerHTML = "Time: " + TIME;
 
         let xSpeed = movementSpeeds.walkX;
         let ySpeed = movementSpeeds.walkY;
