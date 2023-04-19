@@ -14,7 +14,7 @@ export class mainMap extends Phaser.Scene {
         this.stats = {
             inCutScene: false,
             time: 55,
-            stock: 0,
+            stock: 15,
             dayOver: false
         };
     }
