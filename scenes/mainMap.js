@@ -137,7 +137,7 @@ export class mainMap extends Phaser.Scene {
         this.player.setVelocity(0);
 
         timer.innerText = !this.stats.dayOver ? `Time: 0:${this.stats.time}` : "Day is over!";
-        stock.innerText = `Stock Price \$${this.stats.stock}`;
+        stock.innerText = `Stock Price: \$${this.stats.stock}`;
 
         let xSpeed = movementSpeeds.walkX;
         let ySpeed = movementSpeeds.walkY;
